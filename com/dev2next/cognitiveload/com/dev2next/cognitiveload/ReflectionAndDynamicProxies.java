@@ -9,8 +9,10 @@ public class ReflectionAndDynamicProxies {
     private static final java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(ReflectionAndDynamicProxies.class.getName());
 
     public static void main(String[] args) throws Exception {
-        // Reflection and dynamic proxies introduce extraneous complexity and cognitive load by hiding type information and runtime behavior.
-        // Developers must reason about method names, parameters, and invocation logic at runtime, increasing the risk of errors and making code harder to understand and maintain.
+        // Reflection and dynamic proxies introduce extraneous complexity and cognitive load by 
+        // hiding type information and runtime behavior.
+        // Developers must reason about method names, parameters, and invocation logic at runtime, 
+        // increasing the risk of errors and making code harder to understand and maintain.
         Class<?> clazz = Class.forName("java.util.ArrayList");
         Object list = clazz.getDeclaredConstructor().newInstance();
         Method addMethod = clazz.getMethod("add", Object.class);

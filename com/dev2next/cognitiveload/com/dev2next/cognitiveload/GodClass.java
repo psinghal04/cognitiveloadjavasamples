@@ -1,19 +1,21 @@
 /**
- * The {@code GodClass} exemplifies the "God Class" anti-pattern in object-oriented design,
- * where a single class takes on numerous unrelated responsibilities such as data storage,
- * business logic, UI logic, logging, file I/O, and configuration management.
+ * The {@code GodClass} exemplifies the "God Class" anti-pattern in
+ * object-oriented design, where a single class takes on numerous unrelated
+ * responsibilities such as data storage, business logic, UI logic, logging,
+ * file I/O, and configuration management.
  *
  * <p>
- * God classes introduce extraneous complexity by tightly coupling disparate concerns,
- * making the codebase harder to understand, maintain, and extend. Developers must keep track
- * of multiple contexts and behaviors within one class, which increases cognitive load and
- * the likelihood of errors.
+ * God classes introduce extraneous complexity by tightly coupling disparate
+ * concerns, making the codebase harder to understand, maintain, and extend.
+ * Developers must keep track of multiple contexts and behaviors within one
+ * class, which increases cognitive load and the likelihood of errors.
  * </p>
  *
  * <p>
- * This structure violates the Single Responsibility Principle and leads to poor modularity,
- * making refactoring and testing more difficult. The example here is intentionally designed
- * to highlight how God classes can hinder clarity and scalability in software projects.
+ * This structure violates the Single Responsibility Principle and leads to poor
+ * modularity, making refactoring and testing more difficult. The example here
+ * is intentionally designed to highlight how God classes can hinder clarity and
+ * scalability in software projects.
  * </p>
  */
 package com.dev2next.cognitiveload;
@@ -23,6 +25,7 @@ import java.util.*;
 import java.util.logging.Logger;
 
 public class GodClass {
+
     // Data storage
     private final List<String> users = new ArrayList<>();
     private final Map<String, Integer> accounts = new HashMap<>();

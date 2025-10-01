@@ -13,14 +13,19 @@ public class DeeplyNestedControlStructures {
      * <ul>
      * <li>Deeply nested control structures (multiple levels of for-loops and
      * if-statements) make the code hard to follow.</li>
+     * 
      * <li>Multiple conditional checks at each nesting level increase mental
      * effort required to understand the flow.</li>
+     * 
      * <li>Logic is spread across several nested blocks, reducing readability
      * and maintainability.</li>
+     * 
      * <li>Lack of early exits or guard clauses leads to increased indentation
      * and complexity.</li>
+     * 
      * <li>Single responsibility principle is violated; the method handles
      * filtering, validation, and output together.</li>
+     * 
      * </ul>
      * </p>
      *

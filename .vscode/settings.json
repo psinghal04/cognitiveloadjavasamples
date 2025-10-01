@@ -1,5 +1,6 @@
 {
     "sonarlint.connectedMode.project": {
-        "connectionId": ""
+        "connectionId": "psinghal04",
+        "projectKey": "psinghal04_cognitiveloadjavasamples"
     }
 }

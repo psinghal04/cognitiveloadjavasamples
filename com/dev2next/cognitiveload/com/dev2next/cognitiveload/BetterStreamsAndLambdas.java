@@ -13,6 +13,41 @@ import static java.util.stream.Collectors.toCollection;
 
 public class BetterStreamsAndLambdas {
 
+    // This version simplifies stream and lambda usage by:
+    // - Using clear variable names and straightforward method references
+    // - Avoiding nested or overly clever stream operations that obscure intent
+    // - Presenting logic in a linear, easy-to-follow manner
+    // Compared to CleverStreamsAndLambdas, this reduces extraneous complexity and cognitive load,
+    // making it easier for others to understand, maintain, and debug the code.
+    static Map<String, String> improvedStreamUsage(List<User> users) {
+        Map<String, TreeSet<String>> byCity = users.stream()
+                .filter(BetterStreamsAndLambdas::hasHighValueOrder)
+                .collect(groupingBy(
+                        BetterStreamsAndLambdas::cityOf,
+                        HashMap::new,
+                        mapping(u -> normalizeName(u.getName()), toCollection(TreeSet::new))
+                ));
+
+        return byCity.entrySet().stream()
+                .filter(e -> e.getKey() != null)
+                .limit(5)
+                .collect(LinkedHashMap::new,
+                        (m, e) -> m.put(e.getKey(), String.join(",", e.getValue())),
+                        Map::putAll);
+    }
+
+    private static boolean hasHighValueOrder(User u) {
+        return u.getOrders().stream().anyMatch(o -> o.getTotal() > 100);
+    }
+
+    private static String normalizeName(String name) {
+        return name == null ? "" : name.trim().toUpperCase();
+    }
+
+    private static String cityOf(User u) {
+        return u.getAddress().getCity();
+    }
+
     static class User {
 
         private final String name;
@@ -65,36 +100,6 @@ public class BetterStreamsAndLambdas {
     }
 
     private static final Logger logger = Logger.getLogger(BetterStreamsAndLambdas.class.getName());
-
-    // GOOD: Improved, readable version
-    static Map<String, String> improvedStreamUsage(List<User> users) {
-        Map<String, TreeSet<String>> byCity = users.stream()
-                .filter(BetterStreamsAndLambdas::hasHighValueOrder)
-                .collect(groupingBy(
-                        BetterStreamsAndLambdas::cityOf,
-                        HashMap::new,
-                        mapping(u -> normalizeName(u.getName()), toCollection(TreeSet::new))
-                ));
-
-        return byCity.entrySet().stream()
-                .filter(e -> e.getKey() != null)
-                .limit(5)
-                .collect(LinkedHashMap::new,
-                        (m, e) -> m.put(e.getKey(), String.join(",", e.getValue())),
-                        Map::putAll);
-    }
-
-    private static boolean hasHighValueOrder(User u) {
-        return u.getOrders().stream().anyMatch(o -> o.getTotal() > 100);
-    }
-
-    private static String normalizeName(String name) {
-        return name == null ? "" : name.trim().toUpperCase();
-    }
-
-    private static String cityOf(User u) {
-        return u.getAddress().getCity();
-    }
 
     public static void main(String[] args) {
         // Sample data

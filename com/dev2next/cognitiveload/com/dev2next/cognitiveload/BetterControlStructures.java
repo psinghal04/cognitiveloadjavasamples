@@ -8,32 +8,12 @@ import java.util.logging.Logger;
 
 public class BetterControlStructures {
 
-    private static final Logger LOGGER = Logger.getLogger(BetterControlStructures.class.getName());
-
-    public static void main(String[] args) {
-        // Sample data setup
-        List<Account> accounts = Arrays.asList(
-                new Account("A001", true, Arrays.asList(
-                        new Transaction("T100", 500.0, "USD", TransactionType.TRANSFER, new Date(), Arrays.asList(
-                                new Approval("MGR1", true, new Date(System.currentTimeMillis() + 10000)),
-                                new Approval("MGR2", false, new Date())
-                        )),
-                        new Transaction("T101", 200.0, "EUR", TransactionType.DEPOSIT, new Date(), Collections.emptyList())
-                )),
-                new Account("A002", false, Collections.emptyList()),
-                new Account("A003", true, Arrays.asList(
-                        new Transaction("T200", 1000.0, "USD", TransactionType.TRANSFER, new Date(), Arrays.asList(
-                                new Approval("MGR3", true, new Date(System.currentTimeMillis() + 20000))
-                        ))
-                ))
-        );
-        new BetterControlStructures().processAndLogApprovedUsdTransfers(accounts);
-    }
-
     /**
-     * Improved method to process a list of accounts and log details of approved USD transfer transactions.
-     * This version reduces cognitive complexity by using early exits and helper methods.
-     * It also gives a better and more meaningful name to the method.
+     * Improved method to process a list of accounts and log details of approved
+     * USD transfer transactions. This version reduces cognitive complexity by
+     * using early exits and helper methods. It also gives a better and more
+     * meaningful name to the method.
+     *
      * @param accounts
      */
     void processAndLogApprovedUsdTransfers(List<Account> accounts) {
@@ -94,4 +74,27 @@ public class BetterControlStructures {
                 "Account: {0}, Transaction: {1}, Approved by: {2}, Approved by: {3}",
                 new Object[]{account.getId(), txn.getId(), approval.getManagerId(), approval.getManagerId()});
     }
+
+    private static final Logger LOGGER = Logger.getLogger(BetterControlStructures.class.getName());
+
+    public static void main(String[] args) {
+        // Sample data setup
+        List<Account> accounts = Arrays.asList(
+                new Account("A001", true, Arrays.asList(
+                        new Transaction("T100", 500.0, "USD", TransactionType.TRANSFER, new Date(), Arrays.asList(
+                                new Approval("MGR1", true, new Date(System.currentTimeMillis() + 10000)),
+                                new Approval("MGR2", false, new Date())
+                        )),
+                        new Transaction("T101", 200.0, "EUR", TransactionType.DEPOSIT, new Date(), Collections.emptyList())
+                )),
+                new Account("A002", false, Collections.emptyList()),
+                new Account("A003", true, Arrays.asList(
+                        new Transaction("T200", 1000.0, "USD", TransactionType.TRANSFER, new Date(), Arrays.asList(
+                                new Approval("MGR3", true, new Date(System.currentTimeMillis() + 20000))
+                        ))
+                ))
+        );
+        new BetterControlStructures().processAndLogApprovedUsdTransfers(accounts);
+    }
+
 }

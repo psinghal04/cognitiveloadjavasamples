@@ -11,11 +11,13 @@ public class BetterExceptionHandling {
     public static void main(String[] args) {
         try {
             processData();
-            // Improved exception handling:
-            //   *  Clear separation of concerns by handling each exception type specifically.
-            //   *  Preserving original exception types and messages.
-            //   *  Avoiding unnecessary wrapping and swallowing of exceptions.
-            //   *  Making diagnostics clear and failure paths explicit.
+            //   * Reduces extraneous complexity by handling each exception type in its own block, 
+            //     making the code easier to follow.
+            //   * Lowers cognitive load by making error sources and responses explicit, 
+            //     so developers can quickly understand failure paths.
+            //   * Preserves original exception types and messages for accurate diagnostics.
+            //   * Avoids unnecessary wrapping or swallowing of exceptions, keeping error handling 
+            //     straightforward.
         } catch (IOException e) {
             LOGGER.severe(String.format("File error: %s", e.getMessage()));
         } catch (SQLException e) {
