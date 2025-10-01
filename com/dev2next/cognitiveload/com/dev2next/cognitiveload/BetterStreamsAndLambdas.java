@@ -20,7 +20,7 @@ public class BetterStreamsAndLambdas {
     // Compared to CleverStreamsAndLambdas, this reduces extraneous complexity and cognitive load,
     // making it easier for others to understand, maintain, and debug the code.
     static Map<String, String> improvedStreamUsage(List<User> users) {
-        Map<String, TreeSet<String>> byCity = users.stream()
+        Map<String, TreeSet<String>> highValueOrdersByCity = users.stream()
                 .filter(BetterStreamsAndLambdas::hasHighValueOrder)
                 .collect(groupingBy(
                         BetterStreamsAndLambdas::cityOf,
@@ -28,7 +28,7 @@ public class BetterStreamsAndLambdas {
                         mapping(u -> normalizeName(u.getName()), toCollection(TreeSet::new))
                 ));
 
-        return byCity.entrySet().stream()
+        return highValueOrdersByCity.entrySet().stream()
                 .filter(e -> e.getKey() != null)
                 .limit(5)
                 .collect(LinkedHashMap::new,
